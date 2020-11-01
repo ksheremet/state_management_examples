@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:state_management_example/bloc/cubit/counter/counter_cubit.dart';
 import 'package:state_management_example/bloc/cubit/counter/counter_cubit_page.dart';
 
+import 'bloc/bloc/counter/counter_bloc.dart';
+import 'bloc/bloc/counter/counter_page.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -14,16 +17,21 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
-        home: MyHomePage(title: 'Flutter State Management'),
+        home: MyHomePage(title: 'Flutter Bloc State Management'),
         initialRoute: MyHomePage.routeName,
         routes: {
           CounterCubitPage.routeName: (context) => CounterCubitPage(),
+          CounterPage.routeName: (context) => CounterPage(),
         },
         builder: (context, child) => MultiBlocProvider(providers: [
           BlocProvider<CounterCubit>(
             lazy: true,
             create: (context) => CounterCubit(),
           ),
+          BlocProvider(
+            lazy: true,
+            create: (context) => CounterBloc(),
+          )
         ], child: child),
       );
 }
@@ -40,15 +48,26 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text(title),
         ),
-        body: Center(
+        body: Padding(
+          padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               RaisedButton(
-                  child: const Text('Counter BLoC'),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(CounterCubitPage.routeName);
-                  }),
+                child: const Text('Counter Cubit BLoC'),
+                color: Colors.teal,
+                onPressed: () {
+                  Navigator.of(context).pushNamed(CounterCubitPage.routeName);
+                },
+              ),
+              RaisedButton(
+                child: const Text('Counter BLoC'),
+                color: Colors.blue,
+                onPressed: () {
+                  Navigator.of(context).pushNamed(CounterPage.routeName);
+                },
+              ),
             ],
           ),
         ),

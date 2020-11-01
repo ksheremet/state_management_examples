@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:state_management_example/bloc/cubit/counter/counter_cubit.dart';
-import 'package:state_management_example/bloc/cubit/counter/counter_state.dart';
+import 'package:state_management_example/bloc/bloc/counter/counter_bloc.dart';
 
-class CounterCubitPage extends StatelessWidget {
-  static const String routeName = '/counter_cubit';
+class CounterPage extends StatelessWidget {
+  static const String routeName = '/counter_bloc';
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: const Text('Counter Cubit Bloc')),
-        body: BlocBuilder<CounterCubit, CounterCubitState>(
+        appBar: AppBar(title: const Text('Counter Bloc')),
+        body: BlocBuilder<CounterBloc, CounterState>(
           builder: (context, state) => Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -40,7 +39,8 @@ class CounterCubitPage extends StatelessWidget {
                 backgroundColor: Colors.orange,
                 heroTag: 'increment',
                 child: const Icon(Icons.add),
-                onPressed: () => context.bloc<CounterCubit>().increment(),
+                onPressed: () =>
+                    context.bloc<CounterBloc>().add(IncrementEvent()),
               ),
             ),
             Padding(
@@ -49,7 +49,8 @@ class CounterCubitPage extends StatelessWidget {
                 backgroundColor: Colors.teal,
                 heroTag: 'decrement',
                 child: const Icon(Icons.remove),
-                onPressed: () => context.bloc<CounterCubit>().decrement(),
+                onPressed: () =>
+                    context.bloc<CounterBloc>().add(DecrementEvent()),
               ),
             ),
           ],
