@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:state_management_example/bloc/cubit/counter/counter_cubit.dart';
 import 'package:state_management_example/bloc/cubit/counter/counter_cubit_page.dart';
+import 'package:state_management_example/bloc/hydrated_bloc/counter/hydrated_counter_cubit.dart';
+import 'package:state_management_example/bloc/hydrated_bloc/counter/hydrated_counter_cubit_page.dart';
 
 import 'bloc/bloc/counter/counter_bloc.dart';
 import 'bloc/bloc/counter/counter_page.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Initialize Storage for Hydrated Cubit
+  HydratedCubit.storage = await HydratedStorage.build();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -22,6 +30,8 @@ class MyApp extends StatelessWidget {
         routes: {
           CounterCubitPage.routeName: (context) => CounterCubitPage(),
           CounterPage.routeName: (context) => CounterPage(),
+          HydratedCounterCubitPage.routeName: (context) =>
+              HydratedCounterCubitPage(),
         },
         builder: (context, child) => MultiBlocProvider(providers: [
           BlocProvider<CounterCubit>(
@@ -31,6 +41,10 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             lazy: true,
             create: (context) => CounterBloc(),
+          ),
+          BlocProvider(
+            lazy: true,
+            create: (context) => HydratedCounterCubit(),
           )
         ], child: child),
       );
@@ -59,6 +73,14 @@ class MyHomePage extends StatelessWidget {
                 color: Colors.teal,
                 onPressed: () {
                   Navigator.of(context).pushNamed(CounterCubitPage.routeName);
+                },
+              ),
+              RaisedButton(
+                child: const Text('Hydrated Counter Cubit BLoC'),
+                color: Colors.red,
+                onPressed: () {
+                  Navigator.of(context)
+                      .pushNamed(HydratedCounterCubitPage.routeName);
                 },
               ),
               RaisedButton(
