@@ -40,7 +40,7 @@ class CounterPage extends StatelessWidget {
                 heroTag: 'increment',
                 child: const Icon(Icons.add),
                 onPressed: () =>
-                    context.bloc<CounterBloc>().add(IncrementEvent()),
+                    context.read<CounterBloc>().add(IncrementEvent()),
               ),
             ),
             Padding(
@@ -50,7 +50,7 @@ class CounterPage extends StatelessWidget {
                 heroTag: 'decrement',
                 child: const Icon(Icons.remove),
                 onPressed: () =>
-                    context.bloc<CounterBloc>().add(DecrementEvent()),
+                    context.read<CounterBloc>().add(DecrementEvent()),
               ),
             ),
           ],

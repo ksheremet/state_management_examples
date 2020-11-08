@@ -40,7 +40,7 @@ class CounterCubitPage extends StatelessWidget {
                 backgroundColor: Colors.orange,
                 heroTag: 'increment',
                 child: const Icon(Icons.add),
-                onPressed: () => context.bloc<CounterCubit>().increment(),
+                onPressed: () => context.read<CounterCubit>().increment(),
               ),
             ),
             Padding(
@@ -49,7 +49,11 @@ class CounterCubitPage extends StatelessWidget {
                 backgroundColor: Colors.teal,
                 heroTag: 'decrement',
                 child: const Icon(Icons.remove),
-                onPressed: () => context.bloc<CounterCubit>().decrement(),
+                onPressed: () {
+                  // BlocProvider.of<CounterCubit>(context, listen: false)
+                  //     .decrement();
+                  context.read<CounterCubit>().decrement();
+                },
               ),
             ),
           ],
