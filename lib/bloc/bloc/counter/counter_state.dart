@@ -7,6 +7,7 @@ abstract class CounterState extends Equatable {
 
   const CounterState({this.action, this.count});
 
+  @override
   List<Object> get props => [
         action,
         count,

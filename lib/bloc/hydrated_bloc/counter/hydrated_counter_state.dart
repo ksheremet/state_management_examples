@@ -8,6 +8,7 @@ abstract class HydratedCounterCubitState extends Equatable {
 
   const HydratedCounterCubitState({this.action, this.count});
 
+  @override
   List<Object> get props => [
         action,
         count,

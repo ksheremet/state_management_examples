@@ -8,6 +8,7 @@ abstract class CounterCubitState extends Equatable {
 
   const CounterCubitState({this.action, this.count});
 
+  @override
   List<Object> get props => [
         action,
         count,
