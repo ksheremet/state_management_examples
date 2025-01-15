@@ -1,10 +1,8 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'hydrated_counter_state.dart';
 
-class HydratedCounterCubit extends Cubit<HydratedCounterCubitState>
-    with HydratedMixin {
+class HydratedCounterCubit extends HydratedCubit<HydratedCounterCubitState> {
   HydratedCounterCubit()
       : super(HydratedCounterCubitInitial(action: 'Initialized', count: 0));
 

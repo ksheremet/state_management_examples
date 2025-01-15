@@ -6,7 +6,7 @@ abstract class CounterCubitState extends Equatable {
   final String action;
   final int count;
 
-  const CounterCubitState({this.action, this.count});
+  const CounterCubitState({required this.action, required this.count});
 
   @override
   List<Object> get props => [
@@ -16,17 +16,17 @@ abstract class CounterCubitState extends Equatable {
 }
 
 class CounterCubitInitial extends CounterCubitState {
-  const CounterCubitInitial({String action, int count})
+  const CounterCubitInitial({required String action, required int count})
       : super(action: action, count: count);
 }
 
 class CounterCubitIncreased extends CounterCubitState {
-  const CounterCubitIncreased({String action, int count})
+  const CounterCubitIncreased({required String action, required int count})
       : super(action: action, count: count);
 }
 
 class CounterCubitDecreased extends CounterCubitState {
-  const CounterCubitDecreased({String action, int count})
+  const CounterCubitDecreased({required String action, required int count})
       : super(action: action, count: count);
 }
 

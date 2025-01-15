@@ -6,7 +6,7 @@ abstract class HydratedCounterCubitState extends Equatable {
   final String action;
   final int count;
 
-  const HydratedCounterCubitState({this.action, this.count});
+  const HydratedCounterCubitState({required this.action, required this.count});
 
   @override
   List<Object> get props => [
@@ -16,16 +16,19 @@ abstract class HydratedCounterCubitState extends Equatable {
 }
 
 class HydratedCounterCubitInitial extends HydratedCounterCubitState {
-  const HydratedCounterCubitInitial({String action, int count})
+  const HydratedCounterCubitInitial(
+      {required String action, required int count})
       : super(action: action, count: count);
 }
 
 class HydratedCounterCubitIncreased extends HydratedCounterCubitState {
-  const HydratedCounterCubitIncreased({String action, int count})
+  const HydratedCounterCubitIncreased(
+      {required String action, required int count})
       : super(action: action, count: count);
 }
 
 class HydratedCounterCubitDecreased extends HydratedCounterCubitState {
-  const HydratedCounterCubitDecreased({String action, int count})
+  const HydratedCounterCubitDecreased(
+      {required String action, required int count})
       : super(action: action, count: count);
 }

@@ -5,7 +5,7 @@ abstract class CounterState extends Equatable {
   final String action;
   final int count;
 
-  const CounterState({this.action, this.count});
+  const CounterState({required this.action, required this.count});
 
   @override
   List<Object> get props => [
@@ -15,16 +15,16 @@ abstract class CounterState extends Equatable {
 }
 
 class CounterInitial extends CounterState {
-  const CounterInitial({String action, int count})
+  const CounterInitial({required String action, required int count})
       : super(action: action, count: count);
 }
 
 class CounterIncreased extends CounterState {
-  const CounterIncreased({String action, int count})
+  const CounterIncreased({required String action, required int count})
       : super(action: action, count: count);
 }
 
 class CounterDecreased extends CounterState {
-  const CounterDecreased({String action, int count})
+  const CounterDecreased({required String action, required int count})
       : super(action: action, count: count);
 }

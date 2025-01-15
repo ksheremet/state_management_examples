@@ -15,13 +15,13 @@ class CounterPage extends StatelessWidget {
             children: [
               Text(
                 state.action,
-                style: Theme.of(context).textTheme.headline2,
+                style: Theme.of(context).textTheme.displayMedium,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),
               Text(
                 '${state.count}',
-                style: Theme.of(context).textTheme.headline3.copyWith(
+                style: Theme.of(context).textTheme.displaySmall!.copyWith(
                       color: Colors.black,
                     ),
                 textAlign: TextAlign.center,
